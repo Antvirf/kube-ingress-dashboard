@@ -10,7 +10,7 @@ Built with **[Go](https://go.dev/)**, **[Pico v2](https://v2.picocss.com/docs/v2
 
 ```bash
 export NAMESPACE="yournamespace"
-kubectl apply -f https://raw.githubusercontent.com/antvirf/kube-ingress-dashboard/main/deploy.yaml -n $NAMESPACE
+kubectl apply -f https://raw.githubusercontent.com/Antvirf/kube-ingress-dashboard/main/manifests/deploy.yaml -n $NAMESPACE
 ```
 
 ## Functionality
