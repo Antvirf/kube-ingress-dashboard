@@ -17,6 +17,7 @@ RUN go build -o /kube-ingress-dashboard
 FROM scratch
 WORKDIR /bin
 COPY --from=builder /kube-ingress-dashboard .
+COPY *.html ./
 
 EXPOSE 8080
 CMD ["./kube-ingress-dashboard"]
