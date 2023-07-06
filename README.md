@@ -1,7 +1,5 @@
 # Kube-ingress-dashboard
 
-**Currently broken in-cluster**
-
 *Like a tiny Kubernetes Dashboard, but just for ingress resources.*
 
 **Intended for use behind an authentication proxy or in a private network - do not expose this dashboard with a fully public ingress.**
@@ -21,4 +19,8 @@ The dashboard fetches Ingresses for all namespaces the calling pod has access to
 
 ### Search by name or URL
 
+<!-- Pictures coming soon -->
+
 ### Filter by namespace
+
+<!-- Pictures coming soon -->
