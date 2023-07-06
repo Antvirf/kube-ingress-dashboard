@@ -49,7 +49,7 @@ spec:
       serviceAccountName: kube-ingress-dashboard
       containers:
         - name: kube-ingress-dashboard
-          image: ghcr.io/antvirf/kube-ingress-dashboard:3
+          image: ghcr.io/antvirf/kube-ingress-dashboard:latest
           ports:
             - containerPort: 8080
           resources:
