@@ -34,7 +34,7 @@ jobs:
         uses: docker/build-push-action@v4
         id: build-image
         env:
-          REGISTRY: ghcr.io/${{ github.repository }}
+          REGISTRY: ghcr.io/antvirf/kube-ingress-dashboard
         with:
           context: ./.
           file: ./Dockerfile
