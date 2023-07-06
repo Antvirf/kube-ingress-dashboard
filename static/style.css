@@ -1,0 +1,55 @@
+.parent {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: 1fr;
+  grid-row-gap: 0px;
+}
+
+.div1 {
+  grid-area: 1 / 1 / 2 / 2;
+}
+.div2 {
+  grid-area: 1 / 2 / 2 / 7;
+}
+
+.sidebar-list {
+  margin-block-start: 0 !important;
+  padding-inline-start: 0;
+}
+.sidebar-list > li,
+.sidebar-list > li > a {
+  text-decoration: none;
+  list-style: none;
+  padding: 0.25rem;
+  border-radius: 0.25rem;
+  display: flex;
+  align-items: center;
+}
+
+.sidebar-list > li > a > i {
+  min-width: 1.3em;
+  max-width: 1.3em;
+  padding-right: 2em;
+}
+
+.active {
+  background-color: var(--pico-text-selection-color);
+}
+
+main {
+  padding-top: 0.5em !important;
+}
+
+:root {
+  --pico-spacing: 0.7rem !important;
+  --pico-primary: #326ce5 !important;
+  --pico-secondary: #0944c5 !important;
+  --pico-primary-background: #326ce5 !important;
+  --pico-primary-border: #326ce5 !important;
+  --pico-primary-underline: #326ce5 !important;
+  --pico-primary-hover: #85a6ec !important;
+  --pico-primary-hover-background: #85a6ec !important;
+  --pico-primary-hover-border: #85a6ec !important;
+  --pico-primary-hover-underline: #85a6ec !important;
+  --pico-text-selection-color: rgba(203, 203, 203, 0.284) !important;
+}

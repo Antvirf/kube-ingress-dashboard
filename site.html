@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en" x-data="{ darkMode: false}" x-bind:data-theme="darkMode ? 'dark' : 'light'">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ingresses</title>
+
+    <link rel="icon" type="image/x-icon" href="/static/favicon.png">
+    <link rel="stylesheet" href="static/pico.min.css">
+    <link rel="stylesheet" href="static/style.css">
+    <script src="static/alpine.js" defer></script>
+    <script>
+        document.addEventListener('alpine:init', () => {
+            Alpine.store('namespace_filter', '')
+            Alpine.store('search', '')
+        })
+    </script>
+</head>
+<body x-data="{ sidebar: false }">
+    <nav class="container-fluid">
+        <ul>
+            <li x-on:click="sidebar = ! sidebar" class="secondary">
+                <i x-show="sidebar">Namespaces <</i>
+                <i x-show="!sidebar">Namespaces ></i>
+            </li>
+        </ul>
+        <ul>
+            <aside>
+
+                <li class="primary">
+                    <a href="/" style="text-align: center;">
+                        <strong>Kubernetes Ingresses</strong>
+                    </a>
+                </li>
+                <li>
+                    <input type="search" placeholder="Search by name/URL" class="search" x-model="$store.search">
+                </li>
+            </aside>
+        </ul>
+        <ul>
+            <li>
+                <button class="outline" x-on:click="darkMode = !darkMode">
+                    <span x-show="darkMode">🌞</span>
+                    <span x-show="!darkMode">🌚</span>
+                </button>
+            </li>
+        </ul>
+    </nav>
+    <main>
+        <div x-bind:class="sidebar ? 'parent' : ''" x-cloak >
+            <div class="grid1 container-fluid" x-show="sidebar" x-cloak hx-boost="true">
+                <ul class="sidebar-list">
+                    <a x-on:click="$store.namespace_filter = ''">
+                        <strong>
+                            Clear selection
+                        </strong>
+                    </a>
+                    {{range .Namespaces}}
+                    <li
+                        x-on:click="$store.namespace_filter = '{{ . }}'"
+                        x-bind:class="$store.namespace_filter === '{{ . }}' ? 'primary' : ''"
+                        >
+                        <span x-show="$store.namespace_filter != '{{ . }}'">{{ . }}</span>
+                        <span x-show="$store.namespace_filter === '{{ . }}'"><strong>{{ . }}</strong></span>
+                        
+                    </li>
+                    {{end}}
+
+                </ul>
+            </div>
+            <div class="div2">
+                <div class="container-fluid">
+                    {{range .Ingresses}}
+
+                    <section x-show="(
+                        ($store.namespace_filter === '' && $store.search === '') ||
+                        ($store.namespace_filter === '{{.Namespace}}' && $store.search === '') ||
+                        ($store.namespace_filter === '{{.Namespace}}' &&
+                            ('{{ .Name}}'.toLowerCase().includes($store.search.toLowerCase()) ||
+                            '{{ .Link}}'.toLowerCase().includes($store.search.toLowerCase()))
+                        ) ||
+                        ($store.namespace_filter === '' &&
+                            ('{{ .Name}}'.toLowerCase().includes($store.search.toLowerCase()) ||
+                            '{{ .Link}}'.toLowerCase().includes($store.search.toLowerCase()))
+                        ) 
+                        )">
+                        <article>
+                            <h6>{{.Namespace}}</h6>
+                            <h3><a href="{{ .Link }}">{{ .Link }}</a></h3>
+                            <h1>{{.Name}}</h1>
+                            <details>
+                                <summary>
+                                    <i>
+                                        See annotations
+                                    </i>
+                                </summary>
+                                <p>
+                                    {{range $key, $value := .Annotations}}
+                                    <li>
+                                        <strong>{{ $key }}</strong>: {{ $value }}</li>
+                                    {{end}}
+                                </p>
+                              </details>
+                        </article>
+                    </section>
+                    {{end}}
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+</html>
