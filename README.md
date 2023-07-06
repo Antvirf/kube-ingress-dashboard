@@ -6,6 +6,10 @@
 
 Built with **[Go](https://go.dev/)**, **[Pico v2](https://v2.picocss.com/docs/v2)** and **[Alpine.js](https://alpinejs.dev/)**. Container image is approx ~<50 MB.
 
+## Demo
+
+[Hosted on GitHub Pages](https://aviitala.com/kube-ingress-dashboard/)
+
 ## Installation
 
 ```bash
@@ -23,12 +27,8 @@ kubectl create clusterrolebinding kube-ingress-dashboard --clusterrole=kube-ingr
 
 The dashboard fetches Ingresses for all namespaces the calling pod has access to, and caches the results for 15 seconds. Any requests within that period are served the same information, after which a new request is made to the API server. Refreshing the cache is done on request only, so if the dashboard is not accessed, no requests are made to the API server.
 
+![namespace](/docs/all.png)
+
+### Search by name or URL, and filter by namespace
+
 ![dark](/docs/darkmode.png)
-
-### Search by name or URL
-
-![search](/docs/filter_namespace_and_search.png)
-
-### Filter by namespace
-
-![namespace](/docs/filter_namespace.png)
