@@ -1,5 +1,7 @@
 # Kube-ingress-dashboard
 
+**Currently broken in-cluster**
+
 *Like a tiny Kubernetes Dashboard, but just for ingress resources.*
 
 **Intended for use behind an authentication proxy or in a private network - do not expose this dashboard with a fully public ingress.**
