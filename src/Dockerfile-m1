@@ -11,6 +11,7 @@ RUN go mod download
 # https://docs.docker.com/engine/reference/builder/#copy
 COPY static/ ./static/
 COPY *.go ./
+COPY *.html ./
 
 # Build
 RUN go build -o /kube-ingress-dashboard

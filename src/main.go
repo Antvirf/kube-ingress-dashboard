@@ -51,7 +51,7 @@ func getPageData() (TemplateData, error) {
 	currentTime := time.Now().Unix()
 
 	if currentTime-lastFetchedTime > 15 {
-		fmt.Printf("Cache MISS: Attempting to fetching ingress data from cluster at %d\n", currentTime)
+		fmt.Printf("Cache MISS: Attempting to fetch ingress data from cluster at %d\n", currentTime)
 		lastFetchedTime = currentTime
 		cachedNamespaces = []string{}
 

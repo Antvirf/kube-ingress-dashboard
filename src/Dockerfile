@@ -8,6 +8,7 @@ RUN go mod download
 # Copy the source code. Note the slash at the end, as explained in
 COPY static/ ./static/
 COPY *.go ./
+COPY *.html ./
 
 # Build
 RUN go build -o /kube-ingress-dashboard
